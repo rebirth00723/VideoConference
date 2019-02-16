@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_PropertySheetDisplayName>MultiMediaLibs</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;..\LibVideoConference;..\LibScreenShare;C:\ffmpeg\include;C:\SDL\include;C:\PortAudio\include;C:\mysqlc\include;C:\opencv\build\include;C:\sqlite3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;C:\opencv\build\x86\vc12\lib;C:\ffmpeg\lib;C:\SDL\lib\x86;C:\PortAudio\lib;C:\mysqlc\lib;C:\sqlite3\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>LibVideoConference.lib;LibScreenShare.lib;sqlite3.lib;ws2_32.lib;avcodec.lib;avdevice.lib;avfilter.lib;avformat.lib;avutil.lib;postproc.lib;swresample.lib;swscale.lib;SDL2.lib;SDL2test.lib;SDL2_mixer.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;libportaudio-2.lib;opencv_videostab2411.lib;opencv_video2411.lib;opencv_ts2411.lib;opencv_superres2411.lib;opencv_stitching2411.lib;opencv_photo2411.lib;opencv_ocl2411.lib;opencv_objdetect2411.lib;opencv_nonfree2411.lib;opencv_ml2411.lib;opencv_legacy2411.lib;opencv_imgproc2411.lib;opencv_highgui2411.lib;opencv_gpu2411.lib;opencv_flann2411.lib;opencv_features2d2411.lib;opencv_core2411.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+      <SubSystem>NotSet</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

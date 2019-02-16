@@ -1,0 +1,61 @@
+		if (image.byteCount() > 0)
+		{	
+			//udp->sendto(sbuf, 50000);
+			//int s = image.byteCount() / 100;
+			int s = image.byteCount() / image.bytesPerLine(); cout << "LLINE" << image.bytesPerLine();
+
+			int cnt = 0;
+			for (int i = 0; i < s; i++)
+			{
+				sprintf(sbuf, "%dhhhhhhhhh\n", i);
+				printf("%s", sbuf);
+			//memcpy(sbuf, image.scanLine(i), image.bytesPerLine());
+			//udp->writeDatagram(sbuf, image.bytesPerLine(), QHostAddress("225.6.7.8"), (quint16)4444); //image.byteCount()
+			udp->writeDatagram(sbuf, 10, QHostAddress("225.6.7.8"), (quint16)4444); //image.byteCount()
+
+			memcpy(vbuf + cnt*image.bytesPerLine(), sbuf, image.bytesPerLine());
+			cnt++;
+
+			}			
+			
+			QImage *im = new QImage((uchar*)vbuf, image.width(), image.height(), QImage::Format_RGB32);
+			//im->save("HHHHHH.jpg");
+		}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+unsigned long zlen;
+unsigned long ulen;
+
+char*c = "hello world\0";
+
+char* zbuf = (char*)malloc(72000);
+char* ubuf = (char*)malloc(72000);
+
+compress((Bytef*)zbuf, &zlen, (Bytef*)c, strlen(c));
+uncompress((Bytef*)ubuf, &ulen, (Bytef*)zbuf, zlen);
+
+cout << "原始資料:\n" << c << ",length:" << strlen(c) << endl << endl;
+cout << "壓縮後資料:\n" << zbuf << ",length:" << zlen << endl << endl;
+
+*(ubuf + strlen(c)) = '\0';
+cout << "解壓縮後資料:\n" << ubuf << ",length:" << ulen << endl << endl;
+
+getchar();
+return 0;
+
+///////////////////////////////////////////////關閉窗口詢問
+void mainWindow::closeEvent( QCloseEvent * event )
+{
+    switch( QMessageBox::information( this, tr("CT Control View"),
+  tr("Do you really want to log out CT Control View?"),
+  tr("Yes"), tr("No"),
+  0, 1 ) )
+ {
+    case 0:
+  event->accept();
+        break;
+    case 1:
+ default:
+        event->ignore();
+        break;
+ }  
+}
